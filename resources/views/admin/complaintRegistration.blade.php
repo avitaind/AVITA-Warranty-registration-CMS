@@ -35,6 +35,7 @@
                                     <thead>
                                         <tr>
                                             <th>Complaint ID</th>
+                                            <th>Previous Complaint ID</th>
                                             <th>Status</th>
                                             <th>Customer Name</th>
                                             <th>Email</th>
@@ -57,15 +58,21 @@
                                             <tr>
                                                 <td>{{ $cr->ticketID }}</td>
                                                 <td>
-                                                    @if ( $cr->status == 'In Processing')
+                                                    @if ($cr->ticketOld == NULL)
+                                                        N/A
+                                                    @else
+                                                        {{ $cr->ticketOld }}
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($cr->status == 'In Processing')
                                                         <span class="badge badge-success">In Processing</span>
-                                                    @elseif( $cr->status == 'Completed')
+                                                    @elseif($cr->status == 'Completed')
                                                         <span class="badge badge-info">Completed</span>
-                                                    @elseif ( $cr->status == NULL)
+                                                    @elseif ($cr->status == null)
                                                         <span class="badge bg-primary">N/A</span>
                                                     @endif
                                                 </td>
-                                                {{-- <td>{{ $cr->status }}</td> --}}
                                                 <td>{{ $cr->name }}</td>
                                                 <td>{{ $cr->email }}</td>
                                                 <td>{{ $cr->phone }}</td>
@@ -79,11 +86,11 @@
                                                 <td>{{ $cr->pinCode }}</td>
                                                 <td>{{ $cr->issue }}</td>
                                                 <td class="">
-                                                    @if ($cr->purchaseInvoice != NULL)
+                                                    @if ($cr->purchaseInvoice != null)
                                                         {{-- @foreach (explode(',', $cr->purchaseinvoice) as $ref) --}}
-                                                            <a href="{{ '/' . $cr->purchaseInvoice }}" target="_blank"
-                                                                download="{!! $cr->purchaseInvoice !!}"><i
-                                                                    class="mdi mdi-arrow-down-bold-circle-outline mdi-36px"></i></a><br />
+                                                        <a href="{{ '/' . $cr->purchaseInvoice }}" target="_blank"
+                                                            download="{!! $cr->purchaseInvoice !!}"><i
+                                                                class="mdi mdi-arrow-down-bold-circle-outline mdi-36px"></i></a><br />
                                                         {{-- @endforeach --}}
                                                     @else
                                                         N/A

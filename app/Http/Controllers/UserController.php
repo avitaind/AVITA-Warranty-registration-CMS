@@ -487,15 +487,15 @@ class UserController extends Controller
 
     public function complaintRegistrationSave(Request $request, AppMailer $mailer)
     {
-        dd($request->all());
+        // dd($request->all());
         try {
             $picture = "";
             $imageNameArr = [];
             $this->validate($request, [
                 'name'                 => 'required',
                 'status'               => 'required',
-                'email'                => 'required|email|unique:users',
-                'phone'                => 'required|numeric|digits:10',
+                'email'                => 'required',
+                'phone'                => 'required',
                 'productSerialNo'      => 'required',
                 'productPartNo'        => 'required',
                 'purchaseDate'         => 'required',
@@ -506,7 +506,7 @@ class UserController extends Controller
                 'pinCode'              => 'required',
                 'issue'                => 'required',
                 'ticketID'             => 'required',
-                // 'ticketOld'            => 'required',
+                // 'purchaseInvoice.*'    => 'required|mimes:pdf,png,jpg,jpeg|max:2048',
                 'purchaseInvoice.*'    => 'required|mimes:doc,docx,jpg,jpeg,png,pdf,xlsx,xlx,ppt,pptx,csv,zip|max:2048',
             ]);
 
@@ -530,65 +530,15 @@ class UserController extends Controller
                 return redirect()->back()->with("error", "The purchase invoice field is required...!!!");
             }
 
-            // $phonedata = \App\Models\ComplaintRegistration::where('phone', $request->phone)->count();
+            $phonedata = \App\Models\ComplaintRegistration::where('phone', $request->phone)->count();
 
-            // if($phonedata > 0)
-            // {
-            //     return redirect()->back()->with("error", "Phone Number is already taken..!!");
-            // }
+            if ($phonedata > 0) {
+                return redirect()->back()->with("error", "Phone Number is already taken..!!");
+            }
 
-            // $productExist = \App\Models\product_number::where('product_number', $request->productPartNo)->first();
+            // $fileName = time() . '.' . $request->purchaseInvoice->extension();
 
-            // if (!isset($productExist)) {
-            //     return redirect()->back()->with("error", "Something is wrong in Product Number $request->productPartNo !!");
-            // }
-
-            // $allserialnumber = explode(',', $productExist['serial_number']);
-            // $resultant = false;
-            // foreach ($allserialnumber as $key => $data) {
-            //     if ($data == $request->productSerialNo) {
-            //         $resultant = true;
-            //     }
-            // }
-
-            // if ($resultant == true) {
-
-            //     $complRegis = new ComplaintRegistration();
-            //     $complRegis->name              = $request->name;
-            //     $complRegis->email             = $request->email;
-            //     $complRegis->phone             = $request->phone;
-            //     $complRegis->status            = $request->status;
-            //     $complRegis->productSerialNo   = $request->productSerialNo;
-            //     $complRegis->productPartNo     = $request->productPartNo;
-            //     $complRegis->purchaseDate      = $request->purchaseDate;
-            //     $complRegis->warrantyCheck     = $request->warrantyCheck;
-            //     $complRegis->chanalPurchase    = $request->chanalPurchase;
-            //     $complRegis->city              = $request->city;
-            //     $complRegis->state             = $request->state;
-            //     $complRegis->pinCode           = $request->pinCode;
-            //     $complRegis->issue             = $request->issue;
-            //     $complRegis->purchaseInvoice   = $picture;
-            //     $complRegis->ticketID          = $request->ticketID;
-            //     $complRegis->ticketID          = $request->ticketOld;
-
-            //     $getdata = \App\Models\ComplaintRegistration::where('productSerialNo', $request->productSerialNo)->count();
-
-            //     if ($getdata > 0) {
-            //         return redirect()->back()->with("error", "Product is Already Registered.");
-            //     } else {
-            //         $result = $complRegis->save();
-            //     }
-
-            //     $get = \App\Models\ComplaintRegistration::latest()->first();
-
-            //     $mailer->sendcomplaintRegistrationInformation(Auth::user(), $get);
-
-            //     if ($result) {
-            //         return redirect()->back()->with("success", "Product is Registered Now !");
-            //     }
-            // } else {
-            //     return redirect()->back()->with("error", "Something is wrong Serial Number  $request->productSerialNo !!");
-            // }
+            // $request->purchaseInvoice->move(public_path('Complaint-Registration'), $fileName);
 
             $complRegis = new ComplaintRegistration();
             $complRegis->name              = $request->name;
@@ -606,13 +556,9 @@ class UserController extends Controller
             $complRegis->issue             = $request->issue;
             $complRegis->purchaseInvoice   = $picture;
             $complRegis->ticketID          = $request->ticketID;
-            $complRegis->ticketOld         = $request->ticketOld;
+            $complRegis->ticketOld          = $request->ticketOld;
 
-            dd($complRegis);
 
-            $get = \App\Models\ComplaintRegistration::latest()->first();
-
-            $mailer->sendcomplaintRegistrationInformation(Auth::user(), $get);
 
             $getdata = \App\Models\ComplaintRegistration::where('productSerialNo', $request->productSerialNo)->count();
 
@@ -621,6 +567,10 @@ class UserController extends Controller
             } else {
                 $result = $complRegis->save();
             }
+
+            $get = \App\Models\ComplaintRegistration::latest()->first();
+
+            $mailer->sendcomplaintRegistrationInformation(Auth::user(), $get);
 
             if ($result) {
                 return redirect()->back()->with("success", "Product is Registered Now !");
