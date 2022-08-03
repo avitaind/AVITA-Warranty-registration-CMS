@@ -2,7 +2,7 @@
 
 return [
 
-    'welcome'                                        => 'AVITA | INDIA | WARRANTY REGISTRATION',
+    'welcome'                                        => 'AVITA | INDIA | COMPLAINT REGISTRATION',
     'login'                                          => 'AVITA | LOGIN',
     'register'                                       => 'AVITA | REGISTER',
     'reset_password'                                 => 'AVITA | RESET | PASSWORD',
@@ -17,9 +17,9 @@ return [
     'admin_product_registration_Number'              => 'AVITA | ADMIN | REGISTRATION | PRODUCT | MODEL | REGISTRATION',
     'admin_product_registration'                     => 'AVITA | ADMIN | PRODUCT | REGISTRATION',
     'admin_product'                                  => 'AVITA | ADMIN | PRODUCTS',
-    'admin_product_warranty_registration'            => 'AVITA | ADMIN | PRODUCTS | WARRANTY | REGISTRATION',
-    'admin_product_warranty_extend'                  => 'AVITA | ADMIN | PRODUCTS | WARRANTY | EXTEND',
-    'certificate'                                    => 'AVITA | ADMIN | PRODUCTS | CERTIFICATE | WARRANTY',
+    'admin_product_warranty_registration'            => 'AVITA | ADMIN | PRODUCTS | COMPLAINT | REGISTRATION',
+    'admin_product_warranty_extend'                  => 'AVITA | ADMIN | PRODUCTS | COMPLAINT | EXTEND',
+    'certificate'                                    => 'AVITA | ADMIN | PRODUCTS | CERTIFICATE | COMPLAINT',
     'certificate_create'                             => 'AVITA | ADMIN | PRODUCTS | CERTIFICATE | CREATE',
     'admin_profile'                                  => 'AVITA | ADMIN | PROFILE | SETTINGS',
     'complaintRegistration'                          => 'AVITA | ADMIN | COMPLAINT | REGISTRATION',
@@ -30,8 +30,8 @@ return [
     'profile'                                        => 'AVITA | CUSTOMER | PROFILE',
     'password_change'                                => 'AVITA | CUSTOMER | PASSWORD | CHANGE',
     'my_product'                                     => 'AVITA | CUSTOMER | MY PRODUCT',
-    'product_warranty_registration'                  => 'AVITA | CUSTOMER | RODUCT | WARRANTY | REGISTRATION',
-    'product_warranty_extend'                        => 'AVITA | CUSTOMER | PRODUCTS | WARRANTY | EXTEND',
+    'product_warranty_registration'                  => 'AVITA | CUSTOMER | RODUCT | COMPLAINT | REGISTRATION',
+    'product_warranty_extend'                        => 'AVITA | CUSTOMER | PRODUCTS | COMPLAINT | EXTEND',
     'contact'                                        => 'AVITA | CUSTOMER | CONTACT US',
     'complaintRegistration'                          => 'AVITA | CUSTOMER | COMPLAINT | REGISTRATION',
 
