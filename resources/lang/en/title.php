@@ -7,8 +7,8 @@ return [
     'register'                                       => 'AVITA | REGISTER',
     'reset_password'                                 => 'AVITA | RESET | PASSWORD',
 
-    // Admin
 
+    // Admin
     'admin'                                          => 'AVITA | ADMIN | DASHBOARD',
     'admin_user'                                     => 'AVITA | REGISTRATION | CUSTOMERS',
     'admin_product_registration_Type'                => 'AVITA | ADMIN | REGISTRATION | PRODUCT | TYPE | REGISTRATION',
@@ -24,8 +24,8 @@ return [
     'admin_profile'                                  => 'AVITA | ADMIN | PROFILE | SETTINGS',
     'complaintRegistration'                          => 'AVITA | ADMIN | COMPLAINT | REGISTRATION',
 
-    // User
 
+    // User
     'user'                                           => 'AVITA | CUSTOMER | DASHBOARD',
     'profile'                                        => 'AVITA | CUSTOMER | PROFILE',
     'password_change'                                => 'AVITA | CUSTOMER | PASSWORD | CHANGE',
