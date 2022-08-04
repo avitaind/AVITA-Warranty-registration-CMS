@@ -30,7 +30,7 @@ return [
     'profile'                                        => 'AVITA | CUSTOMER | PROFILE',
     'password_change'                                => 'AVITA | CUSTOMER | PASSWORD | CHANGE',
     'my_product'                                     => 'AVITA | CUSTOMER | MY PRODUCT',
-    'product_warranty_registration'                  => 'AVITA | CUSTOMER | RODUCT | COMPLAINT | REGISTRATION',
+    'product_warranty_registration'                  => 'AVITA | CUSTOMER | PRODUCTS | COMPLAINT | REGISTRATION',
     'product_warranty_extend'                        => 'AVITA | CUSTOMER | PRODUCTS | COMPLAINT | EXTEND',
     'contact'                                        => 'AVITA | CUSTOMER | CONTACT US',
     'complaintRegistration'                          => 'AVITA | CUSTOMER | COMPLAINT | REGISTRATION',
