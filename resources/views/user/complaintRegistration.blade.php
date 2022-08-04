@@ -191,10 +191,10 @@
                                                             </div>
                                                         </div>
 
-                                                        {{-- Product Chanal Of Purchase --}}
+                                                        {{-- Product Chanel Of Purchase --}}
                                                         <div class="col-md- col-md-4">
                                                             <div class="mb-3">
-                                                                <label for="chanalPurchase" class="form-label">Chanal Of
+                                                                <label for="chanalPurchase" class="form-label">Chanel Of
                                                                     Purchase <span class="required">*</span></label>
                                                                 <select
                                                                     class="form-select1 @error('chanalPurchase') is-invalid @enderror"

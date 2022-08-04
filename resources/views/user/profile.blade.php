@@ -86,13 +86,13 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-12  mt-3">
                             <label class="labels">Email ID</label>
                             <input type="text" disabled class="form-select1" placeholder="Enter email"
                                 value="{{ Auth::user()->email }}" name="email">
                         </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-12  mt-3">
                             <label class="labels">Address</label>
                             <input type="text" class="form-select1 @error('address') is-invalid @enderror"
                                 placeholder="Enter address" value="{{ Auth::user()->address }}" name="address">
@@ -103,7 +103,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6  mt-3">
                             <label class="labels">Gender</label>
                             <select name="gender" id="gender" class="form-select">
                                 @if (!Auth::user()->gender)
@@ -115,7 +115,7 @@
                             </select>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 mt-3">
                             <label class="labels">Postcode</label>
                             <input type="text" class="form-select1 @error('postcode') is-invalid @enderror"
                                 placeholder="Postcode" value="{{ Auth::user()->postcode }}" name="postcode">
