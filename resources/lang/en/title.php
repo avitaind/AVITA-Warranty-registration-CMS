@@ -2,7 +2,7 @@
 
 return [
 
-    'welcome'                                        => 'AVITA | INDIA | COMPLAINT REGISTRATION',
+    'welcome'                                        => 'AVITA | INDIA | COMPLAINT | REGISTRATION',
     'login'                                          => 'AVITA | LOGIN',
     'register'                                       => 'AVITA | REGISTER',
     'reset_password'                                 => 'AVITA | RESET | PASSWORD',
