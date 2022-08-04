@@ -124,7 +124,7 @@
                                     <button type="submit" class="btn btn-primary btn-block mb-4 mt-4">Register</button>
 
                                     <p class="sign-upp">Already have an account?
-                                        <a class="text-blue" href="{{ route('login') }}">Login</a>
+                                        <a class="text-blue" href="{{ route('login') }}">Log In</a>
                                     </p>
                                 </div>
                             </div>

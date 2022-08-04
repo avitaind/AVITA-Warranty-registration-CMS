@@ -94,7 +94,7 @@
                     </div>
                 @else
                     {{-- // not logged in --}}
-                    <h2 class=" my-2 text-center" style="padding-top: 107px; color:#662d91">Account Login</h2>
+                    <h2 class=" my-2 text-center" style="padding-top: 107px; color:#662d91">Account Log In</h2>
                     <div class=" text-center m-1 font-size-16" style="padding-top: 25px;">Enter your AVITA Member account
                         and
                         password to log in.</div>
@@ -150,7 +150,7 @@
 
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary btn-block mb-2 mt-4">Login In</button>
+                                    <button type="submit" class="btn btn-primary btn-block mb-2 mt-4">Log In</button>
                                     <p class=" text-center p-2">
                                         @if (Route::has('password.request'))
                                             <a class="text-blue text-center" href="{{ route('password.request') }}">
