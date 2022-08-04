@@ -21,8 +21,7 @@
                     </div>
                     <div class="card-body p-5">
                         <h4 class="text-dark mb-5">Join Now</h4>
-                        <div class="text-dark mb-5">We’re here to support you. Please register your grievance by creating
-                            your account and updating product details using the link below.</div>
+                        <div class="text-dark mb-5">Enter the following details to get yourself registered.</div>
 
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
