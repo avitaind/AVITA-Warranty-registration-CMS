@@ -40,11 +40,9 @@
         <div class="row ">
             <div class="col-lg-6 col-xl-6 login-panel my-lg-9 pt-100">
                 {{-- <img src="/assets/img/bg_welcome_background.jpg"> --}}
-                <h2 class="my-2 text-capitalize text-center">Become an AVITA Member</h2>
-                <div class=" text-lg-center  m-5 font-size-16 ">In addition to AVITA intermittently offering the hottest
-                    discounts, news on sales promotions, and the
-                    newest information on AVITA, you will also enjoy having excellent technological support services to
-                    promote your experience as a user of our products.</div>
+                <h2 class="my-2 text-capitalize text-center">Sing Up Now</h2>
+                <div class=" text-lg-center  m-5 font-size-16 ">We’re here to support you. Please register your grievance by
+                    creating your account and updating product details using the link below.</div>
                 <div class="align-content-center justify-content-sm-center text-center pt-50">
                     @if (Route::has('login'))
                         <div class="">
@@ -95,9 +93,9 @@
                 @else
                     {{-- // not logged in --}}
                     <h2 class=" my-2 text-center" style="padding-top: 107px; color:#662d91">Account Log In</h2>
-                    <div class=" text-center m-1 font-size-16" style="padding-top: 25px;">Enter your AVITA Member account
+                    {{-- <div class=" text-center m-1 font-size-16" style="padding-top: 25px;">Enter your AVITA Member account
                         and
-                        password to log in.</div>
+                        password to log in.</div> --}}
                     <div class="align-content-center justify-content-sm-center text-center p-lg-9">
 
                         @include('component.alert')
@@ -107,8 +105,8 @@
                             <div class="row">
                                 <div class="form-group col-md-12 mb-4">
                                     <input type="email" class="form-select1 @error('email') is-invalid @enderror"
-                                        id="email" name="email" value="{{ old('email') }}" autocomplete="email"
-                                        autofocus placeholder="Email">
+                                        id="email" name="email" value="{{ old('email') }}" autocomplete="email" autofocus
+                                        placeholder="Email">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
