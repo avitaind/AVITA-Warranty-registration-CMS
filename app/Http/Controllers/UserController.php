@@ -558,7 +558,7 @@ class UserController extends Controller
             $complRegis->purchaseInvoice   = $picture;
             $complRegis->ticketID          = $request->ticketID;
             $complRegis->ticketOld          = $request->ticketOld;
-            $complRegis->address          = $request->address;
+            $complRegis->address            = $request->address;
 
 
 
@@ -576,7 +576,7 @@ class UserController extends Controller
             $mailer->sendcomplaintRegistrationInformation(Auth::user(), $get);
 
             if ($result) {
-                return redirect()->back()->with("success", "Product is Registered Now !");
+                return redirect()->back()->with("success", "Your Complaint is Registered Now !");
             }
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with("error", "Something is wrong...!");
