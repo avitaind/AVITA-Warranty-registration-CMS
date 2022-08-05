@@ -9,7 +9,11 @@
 <body>
 
     <p>
-        
+        Hi ,
+        <br/>
+        We are sorry to hear a complaint about one of our devices from you. We work hard to prevent situations like these, but sometimes things get out of hand. However, you don’t have to worry. Your complaint is processed as you read this mail. Furthermore, you can always go to our official website and get an update on your order.
+        <br/>
+        Thank you for trusting and purchasing from us.
     </p>
 
     <p><strong>Complaint ID :</strong> {{ $complaintRegistration->ticketID }}</p>
