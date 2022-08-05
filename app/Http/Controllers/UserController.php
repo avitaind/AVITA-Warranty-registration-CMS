@@ -506,6 +506,7 @@ class UserController extends Controller
                 'pinCode'              => 'required',
                 'issue'                => 'required',
                 'ticketID'             => 'required',
+                'address'              => 'required',
                 // 'purchaseInvoice.*'    => 'required|mimes:pdf,png,jpg,jpeg|max:2048',
                 'purchaseInvoice.*'    => 'required|mimes:doc,docx,jpg,jpeg,png,pdf,xlsx,xlx,ppt,pptx,csv,zip|max:2048',
             ]);
@@ -533,7 +534,7 @@ class UserController extends Controller
             $phonedata = \App\Models\ComplaintRegistration::where('phone', $request->phone)->count();
 
             if ($phonedata > 0) {
-                return redirect()->back()->with("error", "Phone Number is already taken..!!");
+                return redirect()->back()->with("error", "The complaint is already registered..!!");
             }
 
             // $fileName = time() . '.' . $request->purchaseInvoice->extension();
@@ -557,13 +558,15 @@ class UserController extends Controller
             $complRegis->purchaseInvoice   = $picture;
             $complRegis->ticketID          = $request->ticketID;
             $complRegis->ticketOld          = $request->ticketOld;
+            $complRegis->address          = $request->address;
+
 
 
 
             $getdata = \App\Models\ComplaintRegistration::where('productSerialNo', $request->productSerialNo)->count();
 
             if ($getdata > 0) {
-                return redirect()->back()->with("error", "Product is Already Registered.");
+                return redirect()->back()->with("error", "Complaint is Already Registered.");
             } else {
                 $result = $complRegis->save();
             }

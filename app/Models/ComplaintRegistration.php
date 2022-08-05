@@ -23,8 +23,11 @@ class ComplaintRegistration extends Model
         'city',
         'state',
         'pinCode',
+        'address',
         'issue',
         'purchaseInvoice',
         'status',
+
+
     ];
 }

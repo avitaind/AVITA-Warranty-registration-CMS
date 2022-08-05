@@ -128,6 +128,8 @@
                                                             </div>
                                                         </div>
 
+
+
                                                         {{-- Product Serial Number --}}
                                                         <div class="col-md-6 col-md-6">
                                                             <div class="mb-3">
@@ -144,6 +146,15 @@
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
                                                                 @enderror
+                                                            </div>
+                                                        </div>
+
+
+                                                        {{-- Serial no image --}}
+                                                        <div class="col-md-12 col-md-12">
+                                                            <div class="mb-4">
+                                                                <img src="/assets/img/serial_no.jpeg" style="width:100%">
+
                                                             </div>
                                                         </div>
 
@@ -239,6 +250,25 @@
                                                                     name="state">
                                                                 @error('state')
                                                                     <span class="invalid-feedback form-text" id="stateHelp"
+                                                                        role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+
+                                                        {{-- address --}}
+                                                        <div class="col-md-12 col-md-12">
+                                                            <div class="mb-3">
+                                                                <label for="address" class="form-label">Address<span
+                                                                        class="required">*</span></label>
+                                                                <textarea class="form-select1 @error('address') is-invalid @enderror"
+                                                                id="address" aria-describedby="addressHelp"
+                                                                name="address" rows="3"></textarea>
+
+                                                                @error('address')
+                                                                    <span class="invalid-feedback form-text" id="addressHelp"
                                                                         role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
