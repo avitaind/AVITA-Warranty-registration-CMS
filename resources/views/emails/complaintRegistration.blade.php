@@ -3,17 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Complaint Registration</title>
+    <title>AVITA Complaint Registration</title>
 </head>
 
 <body>
 
     <p>
-        Hi,
-
-        Complaint Registration: Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam officia
-        voluptate quibusdam exercitationem eligendi recusandae, nemo ipsam earum! Distinctio voluptatem expedita veniam
-        excepturi doloribus architecto aut dolor totam ratione quibusdam.
+        
     </p>
 
     <p><strong>Complaint ID :</strong> {{ $complaintRegistration->ticketID }}</p>

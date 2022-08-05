@@ -130,7 +130,7 @@ class HomeController extends Controller
                 $getdata = \App\Models\ComplaintRegistration::where('productSerialNo', $request->productSerialNo)->count();
 
                 if ($getdata > 0) {
-                    return redirect()->back()->with("error", "Product is Already Registered.");
+                    return redirect()->back()->with("error", "Complaint is already registered.");
                 } else {
                     $result = $complRegis->save();
                 }

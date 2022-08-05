@@ -114,7 +114,7 @@
                                                         {{-- Product Number --}}
                                                         <div class="col-md-6 col-md-6">
                                                             <div class="mb-3">
-                                                                <label for="productPartNo" class="form-label">Part Number<span class="required">*</span></label>
+                                                                <label for="productPartNo" class="form-label">Notebook Model No.<span class="required">*</span> <small>( Please check the backside of the notebook Example: NS14A8INF561-MP),</small></label>
                                                                 <input type="text"
                                                                     class="form-select1 @error('productPartNo') is-invalid @enderror"
                                                                     id="productPartNo" aria-describedby="productPartNoHelp"
