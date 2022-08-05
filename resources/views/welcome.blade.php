@@ -40,7 +40,7 @@
         <div class="row ">
             <div class="col-lg-6 col-xl-6 login-panel my-lg-9 pt-100">
                 {{-- <img src="/assets/img/bg_welcome_background.jpg"> --}}
-                <h2 class="my-2 text-capitalize text-center">Sing Up Now</h2>
+                <h2 class="my-2 text-capitalize text-center">Sign Up Now</h2>
                 <div class=" text-lg-center  m-5 font-size-16 ">We’re here to support you. Please register your grievance by
                     creating your account and updating product details using the link below.</div>
                 <div class="align-content-center justify-content-sm-center text-center pt-50">
