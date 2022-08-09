@@ -30,7 +30,7 @@
 
     <p>We have received your query and our endeavour is to quickly provide you with the solution.</p>
 
-    <p>To track your query status please visit our official site <a href="https://avita-india.com/" target="_blank"></a>www.avita-india.com and connect on our chatbot.</p>
+    <p>To track your query status please visit our official site <a href="https://avita-india.com/" target="_blank">www.avita-india.com</a> and connect on our chatbot.</p>
 
     <p><strong>Complaint ID :</strong> {{ $complaintRegistration->ticketID }}</p>
 
