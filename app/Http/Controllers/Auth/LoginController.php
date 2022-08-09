@@ -35,7 +35,8 @@ class LoginController extends Controller
     public function redirectTo()
     {
         if (Auth()->user()->role == 1) {
-            return redirect()->route('admin.home');
+            // return redirect()->route('admin.home');
+            return redirect()->route('admin.complaintRegistration');
         } else if (Auth()->user()->role == 2) {
             return redirect()->route('seller.home');
         } else if (Auth()->user()->role == 0) {
@@ -87,7 +88,8 @@ class LoginController extends Controller
         if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
 
             if (Auth()->user()->role == 1) {
-                return redirect()->route('admin.home');
+                // return redirect()->route('admin.home');
+                return redirect()->route('admin.complaintRegistration');
             } else if (Auth()->user()->role == 2) {
                 return redirect()->route('seller.home');
             } else if (Auth()->user()->role == 0) {

@@ -81,7 +81,8 @@
                         @endif --}}
 
                         @if (Auth::user()->role == 1)
-                            <a href="{{ route('admin.home') }}" class="btn btn-primary">Admin Dashboard</a>
+                            {{-- <a href="{{ route('admin.home') }}" class="btn btn-primary">Admin Dashboard</a> --}}
+                            <a href="{{ route('admin.complaintRegistration') }}" class="btn btn-primary">Admin Dashboard</a>
                         @elseif (Auth::user()->role == 2)
                             <a href="{{ route('seller.home') }}" class="btn btn-primary">Seller Dashboard</a>
                         @else
