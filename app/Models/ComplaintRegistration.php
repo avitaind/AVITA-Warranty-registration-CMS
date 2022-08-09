@@ -24,10 +24,9 @@ class ComplaintRegistration extends Model
         'state',
         'pinCode',
         'address',
+        'priority',
         'issue',
         'purchaseInvoice',
         'status',
-
-
     ];
 }
