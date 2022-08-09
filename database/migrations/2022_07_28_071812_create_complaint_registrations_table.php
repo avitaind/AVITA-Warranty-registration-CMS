@@ -29,6 +29,7 @@ class CreateComplaintRegistrationsTable extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('pinCode');
+            $table->string('priority');
             $table->text('address');
             $table->text('issue');
             $table->string('purchaseInvoice');
