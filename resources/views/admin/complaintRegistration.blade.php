@@ -34,6 +34,8 @@
                                 <table id="responsive-data-table" class="table" style="width:100%">
                                     <thead>
                                         <tr>
+                                            <th>Date</th>
+                                            <th>Priority Code</th>
                                             <th>Complaint ID</th>
                                             <th>Previous Complaint ID</th>
                                             <th>Status</th>
@@ -44,7 +46,7 @@
                                             <th>Serial Number</th>
                                             <th>Product Purchase Date</th>
                                             <th>Warranty Check</th>
-                                            <th>Chanal Purchase</th>
+                                            <th>Channel Purchase</th>
                                             <th>City</th>
                                             <th>State</th>
                                             <th>PinCode</th>
@@ -56,6 +58,15 @@
                                     <tbody>
                                         @foreach ($complaintRegistration as $cr)
                                             <tr>
+                                                {{-- <td>{{ $cr->created_at->format('Y-m-d H:i:s') }}</td> --}}
+                                                <td>{{ $cr->created_at }}</td>
+                                                <td>
+                                                    @if ($cr->priority == NULL)
+                                                        N/A
+                                                    @else
+                                                        {{ $cr->priority }}
+                                                    @endif
+                                                </td>
                                                 <td>{{ $cr->ticketID }}</td>
                                                 <td>
                                                     @if ($cr->ticketOld == NULL)

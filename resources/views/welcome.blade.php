@@ -67,8 +67,8 @@
             <div class="col-lg-6 col-xl-6 my-lg-9">
                 @auth
                     {{-- // user logged in --}}
-                    <h2 class=" my-2 text-center text-capitalize" style="padding-top: 107px; color:#662d91">all ready Member
-                        Login </h2>
+                    <h2 class=" my-2 text-center text-capitalize" style="padding-top: 107px; color:#662d91">Member Already
+                        Logged-In</h2>
                     <div class=" text-center m-1 font-size-16" style="padding-top: 25px;">Back to redirect AVITA Member
                         Dashboard.</div>
                     <div class="align-content-center justify-content-sm-center text-center p-lg-9">

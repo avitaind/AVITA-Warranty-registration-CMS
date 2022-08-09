@@ -507,6 +507,7 @@ class UserController extends Controller
                 'issue'                => 'required',
                 'ticketID'             => 'required',
                 'address'              => 'required',
+                // 'priority'             => 'required',
                 // 'purchaseInvoice.*'    => 'required|mimes:pdf,png,jpg,jpeg|max:2048',
                 'purchaseInvoice.*'    => 'required|mimes:doc,docx,jpg,jpeg,png,pdf,xlsx,xlx,ppt,pptx,csv,zip|max:2048',
             ]);
@@ -525,6 +526,19 @@ class UserController extends Controller
                     $picture = implode(",", $array); //Image separated by comma
                     // dd($picture);
                 }
+            }
+
+            $priorityCheck = \App\Models\PriorityCode::where('code', $request->priority)->count();
+            // dd($priorityCheck);
+
+            if($priorityCheck == 0)
+            {
+                $request->priority = NULL;
+            // dd($request->priority);
+            }
+            else
+            {
+                $request->priority = $request->priority;
             }
 
             if ($request->purchaseInvoice == NULL) {
@@ -557,8 +571,9 @@ class UserController extends Controller
             $complRegis->issue             = $request->issue;
             $complRegis->purchaseInvoice   = $picture;
             $complRegis->ticketID          = $request->ticketID;
-            $complRegis->ticketOld          = $request->ticketOld;
-            $complRegis->address            = $request->address;
+            $complRegis->ticketOld         = $request->ticketOld;
+            $complRegis->address           = $request->address;
+            $complRegis->priority          = $request->priority;
 
 
 

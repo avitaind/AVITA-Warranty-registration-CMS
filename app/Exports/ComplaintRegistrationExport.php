@@ -12,6 +12,8 @@ class ComplaintRegistrationExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
+            'DATE',
+            'PRIORITY CODE',
             'TICKET ID',
             'PREVIOUS COMPLAINT TICKET ID',
             'STATUS',
@@ -22,7 +24,7 @@ class ComplaintRegistrationExport implements FromCollection, WithHeadings
             'PART NUMBER',
             'PURCHASE DATE',
             'WARRANTY CHECK',
-            'CHANAL PURCHASE',
+            'CHANNEL PURCHASE',
             'CITY',
             'STATE',
             'PIN CODE',
@@ -36,6 +38,6 @@ class ComplaintRegistrationExport implements FromCollection, WithHeadings
     public function collection()
     {
         // return DB::table('users')->where('is_admin', 0)->get();
-        return ComplaintRegistration::select("ticketID", "ticketOld", "status", "name", "email", "phone", "productSerialNo", "productPartNo", "purchaseDate", "warrantyCheck", "chanalPurchase", "city", "state", "pinCode", "issue")->get();
+        return ComplaintRegistration::select("created_at","priority", "ticketID", "ticketOld", "status", "name", "email", "phone", "productSerialNo", "productPartNo", "purchaseDate", "warrantyCheck", "chanalPurchase", "city", "state", "pinCode", "issue")->get();
     }
 }

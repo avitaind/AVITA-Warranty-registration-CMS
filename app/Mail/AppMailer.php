@@ -19,7 +19,7 @@ class AppMailer
 {
 
     public $mailer;
-    public $fromAddress = 'contact@avita-india.com';
+    public $fromAddress = 'noreply@avita-india.com';
     public $fromName = 'AVITA India | Complaint Registration ';
     public $to;
     public $subject;

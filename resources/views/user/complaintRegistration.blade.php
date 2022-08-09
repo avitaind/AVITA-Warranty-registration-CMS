@@ -69,7 +69,8 @@
                                                         {{-- Customer Email --}}
                                                         <div class="col-md-6 col-md-6">
                                                             <div class="mb-3">
-                                                                <label for="email" class="form-label">Customer Email<span class="required">*</span></label>
+                                                                <label for="email" class="form-label">Customer Email<span
+                                                                        class="required">*</span></label>
                                                                 <input type="email" class="form-select1" id="email"
                                                                     aria-describedby="emailHelp" name="email"
                                                                     value="{{ Auth::user()->email }}" readonly>
@@ -77,9 +78,10 @@
                                                         </div>
 
                                                         {{-- Customer Phone --}}
-                                                        <div class="col-md-6 col-md-6">
+                                                        <div class="col-md-4 col-md-4">
                                                             <div class="mb-3">
-                                                                <label for="phone" class="form-label">Customer Phone<span class="required">*</span></label>
+                                                                <label for="phone" class="form-label">Customer Phone<span
+                                                                        class="required">*</span></label>
                                                                 <input type="tel"
                                                                     class="form-select1 @error('phone') is-invalid @enderror"
                                                                     id="phone" aria-describedby="phoneHelp"
@@ -94,7 +96,7 @@
                                                         </div>
 
                                                         {{-- Ticket ID OLD --}}
-                                                        <div class="col-md-6 col-md-6">
+                                                        <div class="col-md-4 col-md-4">
                                                             <div class="mb-3">
                                                                 <label for="ticketOld" class="form-label">Previous Complaint
                                                                     ID<span class="required">(Optional)</span></label>
@@ -111,13 +113,35 @@
                                                             </div>
                                                         </div>
 
+                                                        {{-- Priority Code --}}
+                                                        <div class="col-md-4 col-md-4">
+                                                            <div class="mb-3">
+                                                                <label for="priority" class="form-label">Priority Code<span
+                                                                        class="required">(Optional)</span></label>
+                                                                <input type="text"
+                                                                    class="form-select1 @error('priority') is-invalid @enderror"
+                                                                    id="priority" aria-describedby="priorityHelp"
+                                                                    name="priority">
+                                                                @error('priority')
+                                                                    <span class="invalid-feedback form-text" id="priorityHelp"
+                                                                        role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
                                                         {{-- Product Number --}}
                                                         <div class="col-md-6 col-md-6">
                                                             <div class="mb-3">
-                                                                <label for="productPartNo" class="form-label">Notebook Model No.<span class="required">*</span> <small>( Please check the backside of the notebook Example: NS14A8INF561-MP),</small></label>
+                                                                <label for="productPartNo" class="form-label">Notebook
+                                                                    Model No.<span class="required">*</span> <small>(
+                                                                        Please check the backside of the notebook Example:
+                                                                        NS14A8INF561-MP),</small></label>
                                                                 <input type="text"
                                                                     class="form-select1 @error('productPartNo') is-invalid @enderror"
-                                                                    id="productPartNo" aria-describedby="productPartNoHelp"
+                                                                    id="productPartNo"
+                                                                    aria-describedby="productPartNoHelp"
                                                                     name="productPartNo">
                                                                 @error('productPartNo')
                                                                     <span class="invalid-feedback form-text"
@@ -161,7 +185,8 @@
                                                         {{-- Product DOP --}}
                                                         <div class="col-md-4 col-md-4">
                                                             <div class="mb-3">
-                                                                <label for="purchaseDate" class="form-label">Purchase Date<span class="required">*</span></label>
+                                                                <label for="purchaseDate" class="form-label">Purchase
+                                                                    Date<span class="required">*</span></label>
                                                                 <input type="date"
                                                                     class="form-select1 @error('purchaseDate') is-invalid @enderror"
                                                                     id="dateID" aria-describedby="purchaseDateHelp"
@@ -263,9 +288,8 @@
                                                             <div class="mb-3">
                                                                 <label for="address" class="form-label">Address<span
                                                                         class="required">*</span></label>
-                                                                <textarea class="form-select1 @error('address') is-invalid @enderror"
-                                                                id="address" aria-describedby="addressHelp"
-                                                                name="address" rows="3"></textarea>
+                                                                <textarea class="form-select1 @error('address') is-invalid @enderror" id="address" aria-describedby="addressHelp"
+                                                                    name="address" rows="3"></textarea>
 
                                                                 @error('address')
                                                                     <span class="invalid-feedback form-text" id="addressHelp"
