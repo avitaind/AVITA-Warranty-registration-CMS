@@ -93,13 +93,13 @@ class AdminController extends Controller
 
             if ($request->status == 'Solved') {
                 $get = \App\Models\ComplaintRegistration::where('ticketID', $request->ticketID)->get();
-                dd($get);
+                // dd($get);
                 $mailer->sendcomplaintRegistrationInformationSolved($get);
             }
 
             if ($request->status == 'Denied') {
                 $get = \App\Models\ComplaintRegistration::where('ticketID', $request->ticketID)->get();
-                dd($get);
+                // dd($get);
                 $mailer->sendcomplaintRegistrationInformationDenied($get);
             }
 
