@@ -52,6 +52,14 @@
                     </a>
                 </li>
 
+                <!-- Customers Complaint Registration -->
+                <li>
+                    <a class="sidenav-item-link" href="{{ route('complaintRegistration.lissted') }}">
+                        <i class="mdi mdi-check-decagram"></i>
+                        <span class="nav-text">White Lissted</span>
+                    </a>
+                </li>
+
                 <!-- Users -->
                 {{-- <li>
                     <a class="sidenav-item-link" href="{{ route('user') }}">

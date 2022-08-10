@@ -19,6 +19,7 @@ class AppMailer
 {
 
     public $mailer;
+    // public $fromAddress = 'bhavdeep.bharadwaj@ashplan.media';
     public $fromAddress = 'noreply@avita-india.com';
     public $fromName = 'AVITA India | Complaint Registration ';
     public $to;
@@ -54,7 +55,7 @@ class AppMailer
         return $this->deliver();
     }
 
-    // Warranty Registration Information
+    // Complaint Registration Information
 
     public function sendcomplaintRegistrationInformation($user, ComplaintRegistration $complaintRegistration)
     {
@@ -62,6 +63,28 @@ class AppMailer
         $this->subject = "AVITA Complaint Registration";
         $this->view = 'emails.complaintRegistration';
         $this->data = compact('user', 'complaintRegistration');
+        return $this->deliver();
+    }
+
+    // Complaint Registration Information Solved
+
+    public function sendcomplaintRegistrationInformationSolved(ComplaintRegistration $complaintRegistration)
+    {
+        $this->to =  $complaintRegistration->email;
+        $this->subject = "AVITA | Complaint | Registration | Solved";
+        $this->view = 'emails.complaintRegistrationSolved';
+        $this->data = compact('complaintRegistration');
+        return $this->deliver();
+    }
+
+    // Complaint Registration Information Denied
+
+    public function sendcomplaintRegistrationInformationDenied(ComplaintRegistration $complaintRegistration)
+    {
+        $this->to =  $complaintRegistration->email;
+        $this->subject = "AVITA | Complaint | Registration | Reject";
+        $this->view = 'emails.complaintRegistrationDenied';
+        $this->data = compact('complaintRegistration');
         return $this->deliver();
     }
 

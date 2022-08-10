@@ -95,6 +95,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth', 'PreventB
     // Customers Complaint Registration
     Route::get('complaintRegistration', [AdminController::class, 'complaintRegistration'])->name('admin.complaintRegistration');
 
+    Route::post('complaintRegistration/update', [AdminController::class, 'complaintRegistrationUpdated'])->name('complaintRegistration.update');
+    Route::get('complaintRegistration/white-lissted', [AdminController::class, 'whiteLisstedcomplaintRegistration'])->name('complaintRegistration.lissted');
+
+
     // Export All Complaint Registration
     Route::get('all-complaintRegistration', [AdminController::class, 'exportAllComplaintRegistration'])->name('exportAllComplaintRegistration');
 

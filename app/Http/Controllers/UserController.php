@@ -462,6 +462,9 @@ class UserController extends Controller
     {
         try {
             $checkdata = \App\Models\ComplaintRegistration::where('email', Auth::user()->email)->latest()->first();
+
+            $data = ComplaintRegistration::where('email', Auth::user()->email)->get();
+
             $getdata = \App\Models\ComplaintRegistration::latest()->first();
             // dd($checkdata);
 
@@ -480,7 +483,7 @@ class UserController extends Controller
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
-        return view('user.complaintRegistration', ['ticketID' => $ticketID, 'checkdata' => $checkdata]);
+        return view('user.complaintRegistration', ['ticketID' => $ticketID, 'checkdata' => $checkdata, 'data' => $data]);
     }
 
     // Complaint Registration Save
@@ -496,14 +499,14 @@ class UserController extends Controller
                 'status'               => 'required',
                 'email'                => 'required',
                 'phone'                => 'required',
-                'productSerialNo'      => 'required',
-                'productPartNo'        => 'required',
+                'productSerialNo'      => 'required|regex:/^[a-zA-Z0-9]+$/',
+                'productPartNo'        => 'required|regex:/^[a-zA-Z0-9-]+$/',
                 'purchaseDate'         => 'required',
                 'warrantyCheck'        => 'required',
                 'chanalPurchase'       => 'required',
                 'city'                 => 'required',
                 'state'                => 'required',
-                'pinCode'              => 'required',
+                'pinCode'              => 'required|regex:/^(?:\d{6})$/i',
                 'issue'                => 'required',
                 'ticketID'             => 'required',
                 'address'              => 'required',
@@ -531,6 +534,8 @@ class UserController extends Controller
             $priorityCheck = \App\Models\PriorityCode::where('code', $request->priority)->count();
             // dd($priorityCheck);
 
+            // dd($request->priority);
+
             if($priorityCheck == 0)
             {
                 $request->priority = NULL;
@@ -545,11 +550,11 @@ class UserController extends Controller
                 return redirect()->back()->with("error", "The purchase invoice field is required...!!!");
             }
 
-            $phonedata = \App\Models\ComplaintRegistration::where('phone', $request->phone)->count();
+            // $phonedata = \App\Models\ComplaintRegistration::where('phone', $request->phone)->count();
 
-            if ($phonedata > 0) {
-                return redirect()->back()->with("error", "The complaint is already registered..!!");
-            }
+            // if ($phonedata > 0) {
+            //     return redirect()->back()->with("error", "The complaint is already registered..!!");
+            // }
 
             // $fileName = time() . '.' . $request->purchaseInvoice->extension();
 

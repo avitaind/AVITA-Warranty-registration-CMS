@@ -79,6 +79,79 @@ class AdminController extends Controller
         return view('admin.complaintRegistration', ['complaintRegistration' => $complaintRegistration]);
     }
 
+    // Customers Complaint Registration
+
+    public function complaintRegistrationUpdated(Request $request, AppMailer $mailer)
+    {
+        // dd($request->all());
+        try {
+            // $cR = ComplaintRegistration::get();
+
+            $complaintRegistration = ComplaintRegistration::where('ticketID', $request->ticketID);
+
+            $result = ComplaintRegistration::where('ticketID', $request->ticketID)->update(['status' => $request->status]);
+
+            if ($request->status == 'Solved') {
+                $get = \App\Models\ComplaintRegistration::where('ticketID', $request->ticketID)->latest()->first();
+                // dd($get);
+                $mailer->sendcomplaintRegistrationInformationSolved($get);
+            }
+
+            if ($request->status == 'Denied') {
+                $get = \App\Models\ComplaintRegistration::where('ticketID', $request->ticketID)->latest()->first();
+                // dd($get);
+                $mailer->sendcomplaintRegistrationInformationDenied($get);
+            }
+
+            if ($result == true) {
+                return redirect()->back()->with("success", "");
+            }
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+        return view('admin.complaintRegistration', ['complaintRegistration' => $complaintRegistration]);
+    }
+
+    // Customers Complaint Registration Solved
+
+    //  public function complaintRegistrationUpdated(Request $request)
+    //  {
+    //      // dd($request->all());
+    //      try {
+    //          // $cR = ComplaintRegistration::get();
+
+    //          $complaintRegistration = ComplaintRegistration::where('status', 'Solved')->first();
+    //          dd($complaintRegistration);
+
+
+    //          $result = ComplaintRegistration::where('ticketID', $request->ticketID)->update(['status' => $request->status]);
+
+    //          if ($result == true) {
+    //              return redirect()->back()->with("success", "Product is now Updated OUT Stock !");
+    //          }
+
+    //      } catch (ModelNotFoundException $exception) {
+    //          return back()->withError($exception->getMessage())->withInput();
+    //      }
+    //      return view('admin.complaintRegistration', ['complaintRegistration' => $complaintRegistration]);
+    //  }
+
+
+
+    // Customers Complaint Registration
+
+    public function whiteLisstedcomplaintRegistration(Request $request)
+    {
+        // dd($request->all());
+        try {
+            $complaintRegistration = ComplaintRegistration::where('status', 'Approved')->get();
+            //  dd($complaintRegistration);
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+        return view('admin.whiteLissted', ['complaintRegistration' => $complaintRegistration]);
+    }
+
     // Export All Complaint Registration
 
     public function exportAllComplaintRegistration()
@@ -90,7 +163,6 @@ class AdminController extends Controller
         }
         return redirect()->back()->with("error", "Something is wrong !");
     }
-
 
     // Product Type Register
 
