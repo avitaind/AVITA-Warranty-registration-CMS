@@ -463,7 +463,9 @@ class UserController extends Controller
         try {
             $checkdata = \App\Models\ComplaintRegistration::where('email', Auth::user()->email)->latest()->first();
 
-            $data = ComplaintRegistration::where('email', Auth::user()->email)->get();
+            $solved = ComplaintRegistration::where('email', Auth::user()->email)->where('status', 'Solved')->count();
+            $data = ComplaintRegistration::where('email', Auth::user()->email)->count();
+            // dd($data);
 
             $getdata = \App\Models\ComplaintRegistration::latest()->first();
             // dd($checkdata);
@@ -483,7 +485,7 @@ class UserController extends Controller
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
-        return view('user.complaintRegistration', ['ticketID' => $ticketID, 'checkdata' => $checkdata, 'data' => $data]);
+        return view('user.complaintRegistration', ['ticketID' => $ticketID, 'checkdata' => $checkdata, 'data' => $data, 'solved' => $solved]);
     }
 
     // Complaint Registration Save
@@ -596,7 +598,7 @@ class UserController extends Controller
             $mailer->sendcomplaintRegistrationInformation(Auth::user(), $get);
 
             if ($result) {
-                return redirect()->back()->with("success", "Your Complaint is Registered Now !");
+                return redirect()->back()->with("success", "Your Complaint is Registered Now & Your Ticket ID: $request->ticketID");
             }
         } catch (ModelNotFoundException $exception) {
             return redirect()->back()->with("error", "Something is wrong...!");

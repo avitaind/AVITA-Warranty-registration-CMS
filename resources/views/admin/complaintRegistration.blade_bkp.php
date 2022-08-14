@@ -69,17 +69,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:0" data-bs-toggle="modal"
-
-                                                        class="view-detail" onClick="popupfunctioncall('{{$cr->ticketID}}');">{{ $cr->ticketID }}</i>
-                                                    </a>
-                                                    {{-- <a data-bs-target="#modal-contact" class="view-detail"
-                                                        data-bs-toggle="modal"
-                                                        href="{{ route('complaintUpdated.update', [$cr->ticketID]) }}"
-                                                        style="text-decoration: none;">{{ $cr->ticketID }}&nbsp;<i
-                                                            class="ti-eye"></i></a> --}}
-                                                    {{-- <a href="{{ route('complaintUpdated.details', [$cr->ticketID]) }}" target="_blank">{{ $cr->ticketID }}&nbsp;<i
-                                                            class="ti-eye"></i></a> --}}
+                                                    <a href="{{ route('complaintUpdated.details', [$cr->ticketID]) }}">{{ $cr->ticketID }}</a>
                                                 </td>
                                                 <td>
                                                     @if ($cr->ticketOld == null)
@@ -147,100 +137,6 @@
     </div>
     <!-- End Content Wrapper -->
 
-    <!-- Contact Modal -->
-    <div class="modal fade" id="modal-contact" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header justify-content-end border-bottom-0">
-                    <button type="button" class="btn-close-icon" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="mdi mdi-close"></i>
-                    </button>
-                </div>
-
-                <div class="modal-body pt-0">
-                    <div class="row no-gutters">
-                        <div class="col-md-6">
-                            <div class="contact-info px-4">
-                                <h4 class="text-dark mb-1" id="ticketid"></h4>
-                                <p class="text-dark font-weight-medium pt-3 mb-2">Email</p>
-                                <p id="email"></p>
-                                <p class="text-dark font-weight-medium pt-3 mb-2">Phone Number</p>
-                                <p id="phone"></p>
-                                <p class="text-dark font-weight-medium pt-3 mb-2">Product Purchase Date</p>
-                                <p id="purchaseDate"></p>
-                                <p class="text-dark font-weight-medium pt-3 mb-2">Product Number</p>
-                                <p class="mb-2" id="productPartNo"></p>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="contact-info px-4"><br />
-                                <p class="text-dark font-weight-medium pt-3 mb-2">Serial Number</p>
-                                <p id="productSerialNo"></p>
-                                <form class="row g-3" method="POST"
-                                    action="{{ route('complaintRegistration.update')}}">
-                                    {!! csrf_field() !!}
-                                    <div class="row">
-
-                                        {{-- Status --}}
-                                        <div class="col-md-12 col-lg-12">
-                                            <input type="hidden" name="ticketID" id="avita-ticketid">
-                                            <div class="mb-3">
-                                                <label for="status" class="form-label">
-                                                    <p class="text-dark font-weight-medium pt-3 mb-2">Status</p>
-                                                </label>
-                                                <select class="form-select1 @error('status') is-invalid @enderror"
-                                                    id="status" aria-describedby="statusHelp" name="status">
-                                                    <option value="">------</option>
-                                                    <option value="Approved">Approved</option>
-                                                    <option value="In Process">In Process</option>
-                                                    <option value="Denied">Denied</option>
-                                                    <option value="Solved">Solved</option>
-                                                </select>
-                                                @error('status')
-                                                    <span class="invalid-feedback form-text" id="statusHelp" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        {{-- Comment --}}
-                                        {{-- <div class="col-md-6 col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="comment" class="form-label">
-                                                    <p class="text-dark font-weight-medium pt-3 mb-2">Comment</p>
-                                                </label>
-                                                <select class="form-select1 @error('comment') is-invalid @enderror"
-                                                    id="comment" aria-describedby="commentHelp"
-                                                    name="comment">
-                                                    <option value="">------</option>
-                                                    <option value="Online">Online</option>
-                                                    <option value="Offline">Offline</option>
-                                                </select>
-                                                @error('comment')
-                                                    <span class="invalid-feedback form-text" id="commentHelp"
-                                                        role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div> --}}
-
-                                        <div class="col-md-12 text-center mt-4">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 @endsection
 
 @section('js')
@@ -249,37 +145,4 @@
     <script src="{{ asset('assets/plugins/data-tables/datatables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/data-tables/datatables.responsive.min.js') }}"></script>
 
-    <script>
-        function popupfunctioncall(ticketid) {
-            $.ajax({
-                type: "GET",
-                dataType: 'json',
-                // data:{('ticketId' => ticketid)},
-                url: '/admin/complaintRegistrationpopUp/',
-                data: {
-                    'ticketid': ticketid
-                },
-                global: false,
-                async: true,
-
-                success: function(result) {
-                    $('#modal-contact').modal('show');
-                    $('#email').html(result.email);
-                    $('#ticketid').html(result.ticketID);
-                    // $('#avita-ticketid').html(result.ticketID);
-                    $('#phone').text(result.phone);
-                    $('#productPartNo').text(result.productPartNo);
-                    $('#productSerialNo').text(result.productSerialNo);
-                    $('#purchaseDate').text(result.purchaseDate);
-
-                    // var obj = jQuery.parseJSON(result);
-                    var obj = JSON.parse(JSON.stringify(result));
-                    $('#avita-ticketid').val(obj.ticketID);
-
-                },
-
-            });
-            // alert("ticketid = " + ticketid);
-        }
-    </script>
 @endsection

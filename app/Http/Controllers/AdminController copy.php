@@ -3,28 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ComplaintRegistrationExport;
-use App\Exports\ExportWarrantyExtend;
 use App\Exports\ExportWarrantyRegister;
+use App\Exports\ExportWarrantyExtend;
 use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Mail\AppMailer;
+use Illuminate\Http\Request;
+use App\Models\ProductType;
+use App\Models\Warranty_registration;
+use App\Models\Warranty_extend;
+use App\Models\User;
 use App\Models\Certificate;
 use App\Models\ComplaintRegistration;
-use App\Models\ProductType;
 use App\Models\Sales;
-use App\Models\User;
-use App\Models\Warranty_extend;
-use App\Models\Warranty_registration;
-use Barryvdh\DomPDF\Facade as PDF;
-use Carbon\Carbon;
-use DateTime;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
-use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Barryvdh\DomPDF\Facade as PDF;
+
+use DateTime;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -66,12 +66,11 @@ class AdminController extends Controller
         return view('admin.sellerSalesReport', ['adminsale' => $adminsale, 'totalSales' => $totalSales, 'totalseller' => $totalseller, 'totalIn' => $totalIn, 'totalOut' => $totalOut]);
     }
 
-    // Customers Complaint Registration List
+    // Customers Complaint Registration
 
     public function complaintRegistration()
     {
         try {
-            // $complaintRegistration = ComplaintRegistration::get();
             $complaintRegistration = ComplaintRegistration::orderBy('created_at', 'DESC')->get();
             // dd($complaintRegistration);
         } catch (ModelNotFoundException $exception) {
@@ -80,32 +79,47 @@ class AdminController extends Controller
         return view('admin.complaintRegistration', ['complaintRegistration' => $complaintRegistration]);
     }
 
-    // Customers Complaint Registration PopUP Form
-
-    public function popUpComplaintRegistration(Request $request)
+    public function popUPcomplaintRegistration(Request $request)
     {
         // dd($request->all());
-        $complaintRegistration = ComplaintRegistration::where('ticketID', $request->ticketid)->first();
-        // dd($complaintRegistration);
-        return Response::json($complaintRegistration);
+            $complaintRegistration = ComplaintRegistration::where('ticketID', $request->ticketID)->first();
 
     }
 
-    // Customers Complaint Registration Detail
-
-    public function complaintDetail($ticketID)
+    public function complaintUpdated(Request $request, AppMailer $mailer, $ticketID)
     {
-        $cr = ComplaintRegistration::where('ticketID', $ticketID)->get()->first();
-        // dd($cr);
-        return view('admin.detailsComplaintRegistration', ['cr' => $cr]);
+        $cr = ComplaintRegistration::where('ticketID', $ticketID)->get();
+        // dd($complaintRegistration);
+        $result = ComplaintRegistration::where('ticketID', $request->ticketID)->update(['status' => $request->status]);
+
+            if ($request->status == 'Solved') {
+                $get = \App\Models\ComplaintRegistration::where('ticketID', $request->ticketID)->first();
+                // dd($get);
+                $mailer->sendcomplaintRegistrationInformationSolved($get);
+            }
+
+            if ($request->status == 'Denied') {
+                $get = \App\Models\ComplaintRegistration::where('ticketID', $request->ticketID)->first();
+                // dd($get);
+                $mailer->sendcomplaintRegistrationInformationDenied($get);
+            }
+
+            if ($result == true) {
+                return redirect()->back()->with("success", "");
+            }
+        return view('admin.popUpComplaintRegistration', ['cr' => $cr]);
     }
 
-    // Customers Complaint Registration Updated
+    // Customers Complaint Registration
 
     public function complaintRegistrationUpdated(Request $request, AppMailer $mailer)
     {
-        // dd($request->all());
+        dd($request->all());
         try {
+            // $cR = ComplaintRegistration::get();
+
+            // $complaintRegistration = ComplaintRegistration::where('ticketID', $request->ticketID)->first();
+
             $result = ComplaintRegistration::where('ticketID', $request->ticketID)->update(['status' => $request->status]);
 
             if ($request->status == 'Solved') {
@@ -121,40 +135,42 @@ class AdminController extends Controller
             }
 
             if ($result == true) {
-                return redirect()->back()->with("success", "Status Will Updated $request->status & Ticket ID $request->ticketID");
+                return redirect()->back()->with("success", "");
             }
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
+        // return view('admin.complaintRegistration', ['complaintRegistration' => $complaintRegistration]);
+        return view('admin.complaintRegistration');
     }
 
-    // Customers Complaint Registration Updated
+    // Customers Complaint Registration Solved
 
-    // public function  complaintUpdated(Request $request, AppMailer $mailer)
-    // {
-    //     $result = ComplaintRegistration::where('ticketID', $request->ticketID)->update(['status' => $request->status]);
+    //  public function complaintRegistrationUpdated(Request $request)
+    //  {
+    //      // dd($request->all());
+    //      try {
+    //          // $cR = ComplaintRegistration::get();
 
-    //     if ($request->status == 'Solved') {
-    //         $get = \App\Models\ComplaintRegistration::where('ticketID', $request->ticketID)->first();
-    //         // dd($get);
-    //         $mailer->sendcomplaintRegistrationInformationSolved($get);
-    //     }
+    //          $complaintRegistration = ComplaintRegistration::where('status', 'Solved')->first();
+    //          dd($complaintRegistration);
 
-    //     if ($request->status == 'Denied') {
-    //         $get = \App\Models\ComplaintRegistration::where('ticketID', $request->ticketID)->first();
-    //         // dd($get);
-    //         $mailer->sendcomplaintRegistrationInformationDenied($get);
-    //     }
 
-    //     if ($result == true) {
-    //         // return redirect()->back()->with("success", "Status Will Update $request->status");
-    //         return redirect()->route('admin.complaintRegistration')->with("success","Status Will Updated $request->status.");
+    //          $result = ComplaintRegistration::where('ticketID', $request->ticketID)->update(['status' => $request->status]);
 
-    //     }
-    //     return view('admin.detailsComplaintRegistration');
-    // }
+    //          if ($result == true) {
+    //              return redirect()->back()->with("success", "Product is now Updated OUT Stock !");
+    //          }
 
-    // Customers White Lissted Complaint Registration
+    //      } catch (ModelNotFoundException $exception) {
+    //          return back()->withError($exception->getMessage())->withInput();
+    //      }
+    //      return view('admin.complaintRegistration', ['complaintRegistration' => $complaintRegistration]);
+    //  }
+
+
+
+    // Customers Complaint Registration
 
     public function whiteLisstedcomplaintRegistration(Request $request)
     {
@@ -294,7 +310,7 @@ class AdminController extends Controller
     public function exportWarrantyExtend()
     {
         try {
-            return Excel::download(new ExportWarrantyExtend, 'Warranty-Extend-collection.xlsx');
+            return  Excel::download(new ExportWarrantyExtend, 'Warranty-Extend-collection.xlsx');
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
@@ -378,29 +394,29 @@ class AdminController extends Controller
             // dd($request->all());
 
             $this->validate($request, [
-                'name' => 'required',
-                'email' => 'required',
-                'phone' => 'required|digits:10|numeric',
-                'serial_number' => 'required',
-                'product_number' => 'required',
-                'product_configuration' => 'required',
-                'reseller_name' => 'required',
-                'purchase_date' => 'required',
-                'extend_date' => 'required',
-                'order_id' => 'required',
+                'name'                    => 'required',
+                'email'                   => 'required',
+                'phone'                   => 'required|digits:10|numeric',
+                'serial_number'           => 'required',
+                'product_number'          => 'required',
+                'product_configuration'   => 'required',
+                'reseller_name'           => 'required',
+                'purchase_date'           => 'required',
+                'extend_date'             => 'required',
+                'order_id'                => 'required',
             ]);
 
             $form = Certificate::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'serial_number' => $request->serial_number,
-                'product_number' => $request->product_number,
-                'product_configuration' => $request->product_configuration,
-                'reseller_name' => $request->reseller_name,
-                'purchase_date' => $request->purchase_date,
-                'extend_date' => $request->extend_date,
-                'order_id' => $request->order_id,
+                'name'                    => $request->name,
+                'email'                   => $request->email,
+                'phone'                   => $request->phone,
+                'serial_number'           => $request->serial_number,
+                'product_number'          => $request->product_number,
+                'product_configuration'   => $request->product_configuration,
+                'reseller_name'           => $request->reseller_name,
+                'purchase_date'           => $request->purchase_date,
+                'extend_date'             => $request->extend_date,
+                'order_id'                => $request->order_id,
             ]);
 
             // dd($form);
@@ -494,13 +510,13 @@ class AdminController extends Controller
             $imageNameArr = [];
 
             $this->validate($request, [
-                'last_name' => 'required',
-                'phone' => 'required',
-                'address' => 'required',
-                'gender' => 'required',
-                'postcode' => 'required',
-                'country' => 'required',
-                'state' => 'required',
+                'last_name'        => 'required',
+                'phone'            => 'required',
+                'address'          => 'required',
+                'gender'           => 'required',
+                'postcode'         => 'required',
+                'country'          => 'required',
+                'state'            => 'required',
                 // 'pic'              => 'required',
             ]);
 
@@ -520,14 +536,14 @@ class AdminController extends Controller
             }
 
             User::where('id', $request->user_id)->update([
-                'last_name' => $request->last_name,
-                "phone" => $request->phone,
-                "address" => $request->address,
-                "gender" => $request->gender,
-                "postcode" => $request->postcode,
-                "country" => $request->country,
-                "state" => $request->state,
-                "pic" => $picture,
+                'last_name'     => $request->last_name,
+                "phone"         => $request->phone,
+                "address"       => $request->address,
+                "gender"        => $request->gender,
+                "postcode"      => $request->postcode,
+                "country"       => $request->country,
+                "state"         => $request->state,
+                "pic"           => $picture
             ]);
 
             return redirect()->back()->with("success", "Admin detail is updated !");
@@ -542,8 +558,8 @@ class AdminController extends Controller
     {
         try {
             $this->validate($request, [
-                'current_password' => 'required',
-                'new_password' => 'required',
+                'current_password'        => 'required',
+                'new_password'            => 'required',
             ]);
 
             if (!(Hash::check($request->get('current_password'), Auth::user()->password))) {

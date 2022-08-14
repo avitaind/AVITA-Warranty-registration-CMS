@@ -19,8 +19,8 @@ class AppMailer
 {
 
     public $mailer;
-    // public $fromAddress = 'bhavdeep.bharadwaj@ashplan.media';
-    public $fromAddress = 'noreply@avita-india.com';
+    public $fromAddress = 'bhavdeep.bharadwaj@ashplan.media';
+    // public $fromAddress = 'noreply@avita-india.com';
     public $fromName = 'AVITA India | Complaint Registration ';
     public $to;
     public $subject;
