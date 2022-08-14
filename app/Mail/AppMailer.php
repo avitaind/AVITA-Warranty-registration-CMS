@@ -19,8 +19,8 @@ class AppMailer
 {
 
     public $mailer;
-    public $fromAddress = 'bhavdeep.bharadwaj@ashplan.media';
-    // public $fromAddress = 'noreply@avita-india.com';
+    // public $fromAddress = 'bhavdeep.bharadwaj@ashplan.media';
+    public $fromAddress = 'noreply@avita-india.com';
     public $fromName = 'AVITA India | Complaint Registration ';
     public $to;
     public $subject;
@@ -82,7 +82,7 @@ class AppMailer
     public function sendcomplaintRegistrationInformationDenied(ComplaintRegistration $complaintRegistration)
     {
         $this->to =  $complaintRegistration->email;
-        $this->subject = "AVITA | Complaint | Registration | Reject";
+        $this->subject = "AVITA | Complaint | Registration | Rejected";
         $this->view = 'emails.complaintRegistrationDenied';
         $this->data = compact('complaintRegistration');
         return $this->deliver();
