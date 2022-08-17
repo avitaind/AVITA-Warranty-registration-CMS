@@ -121,7 +121,7 @@
                                                 <td>{{ $cr->city }}</td>
                                                 <td>{{ $cr->state }}</td>
                                                 <td>{{ $cr->pinCode }}</td>
-                                                <td>{{ $cr->issue }}</td>
+                                                <td><textarea class="" style="border: none;" name="" id="" cols="40" rows="2">{{ $cr->issue }}</textarea></td>
                                                 <td class="">
                                                     @if ($cr->purchaseInvoice != null)
                                                         {{-- @foreach (explode(',', $cr->purchaseinvoice) as $ref) --}}
