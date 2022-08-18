@@ -47,6 +47,7 @@
                                             <th>Product Purchase Date</th>
                                             <th>Warranty Check</th>
                                             <th>Channel Of Purchase</th>
+                                            <th>Address</th>
                                             <th>City</th>
                                             <th>State</th>
                                             <th>PinCode</th>
@@ -108,6 +109,7 @@
                                                 <td>{{ $cr->purchaseDate }}</td>
                                                 <td>{{ $cr->warrantyCheck }}</td>
                                                 <td>{{ $cr->chanalPurchase }}</td>
+                                                <td><textarea class="" style="border: none;" name="" id="" cols="40" rows="2">{{ $cr->address }}</textarea></td>
                                                 <td>{{ $cr->city }}</td>
                                                 <td>{{ $cr->state }}</td>
                                                 <td>{{ $cr->pinCode }}</td>
