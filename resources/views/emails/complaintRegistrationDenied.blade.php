@@ -14,7 +14,7 @@
 
     <p>Best Regards</p>
 
-    <p>Dear Valued Customer,</p>
+    {{-- <p>Dear Valued Customer,</p> --}}
 
     {{-- <p>We have received your query and our endeavour is to quickly provide you with the solution.</p>
 
