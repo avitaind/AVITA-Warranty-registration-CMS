@@ -38,7 +38,7 @@ class AppMailer
     public function sendWarrantyExtendInformation($user, Warranty_extend $warrantyExtend)
     {
         $this->to =  $warrantyExtend->user_email;
-        $this->subject = "Warranty Extend Info";
+        $this->subject = "AVITA | Product | Warranty | Extend | Info";
         $this->view = 'emails.warrantyExtend';
         $this->data = compact('user', 'warrantyExtend');
         return $this->deliver();
@@ -49,7 +49,7 @@ class AppMailer
     public function sendWarrantyRegistrationInformation($user, Warranty_registration $WarrantyRegistration)
     {
         $this->to =  $WarrantyRegistration->user_email;
-        $this->subject = "Product Warranty Registration Info";
+        $this->subject = "AVITA | Product | Registration | Info";
         $this->view = 'emails.WarrantyRegistration';
         $this->data = compact('user', 'WarrantyRegistration');
         return $this->deliver();
@@ -60,7 +60,7 @@ class AppMailer
     public function sendcomplaintRegistrationInformation($user, ComplaintRegistration $complaintRegistration)
     {
         $this->to =  $complaintRegistration->email;
-        $this->subject = "AVITA Complaint Registration";
+        $this->subject = "AVITA | Complaint | Registration | Info";
         $this->view = 'emails.complaintRegistration';
         $this->data = compact('user', 'complaintRegistration');
         return $this->deliver();
@@ -71,7 +71,7 @@ class AppMailer
     public function sendcomplaintRegistrationInformationSolved(ComplaintRegistration $complaintRegistration)
     {
         $this->to =  $complaintRegistration->email;
-        $this->subject = "AVITA | Complaint | Registration | Solved";
+        $this->subject = "NOVITA | Complaint | Registration | Solved";
         $this->view = 'emails.complaintRegistrationSolved';
         $this->data = compact('complaintRegistration');
         return $this->deliver();
@@ -82,7 +82,7 @@ class AppMailer
     public function sendcomplaintRegistrationInformationDenied(ComplaintRegistration $complaintRegistration)
     {
         $this->to =  $complaintRegistration->email;
-        $this->subject = "AVITA | Complaint | Registration | Rejected";
+        $this->subject = "NOVITA | Complaint | Registration | Rejected";
         $this->view = 'emails.complaintRegistrationDenied';
         $this->data = compact('complaintRegistration');
         return $this->deliver();
@@ -94,7 +94,7 @@ class AppMailer
     {
         // $this->to = ['bhavdeepbhardwaj555@gmail.com'];
         $this->to = $mail;
-        $this->subject = "Warranty Certificate";
+        $this->subject = "NOVITA | Product | Warranty | Certificate";
         $this->view = 'emails.certificate';
         $this->data = compact('user', 'certificate');
         return $this->deliver();
