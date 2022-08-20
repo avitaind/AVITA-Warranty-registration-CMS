@@ -73,7 +73,7 @@ class AdminController extends Controller
     {
         try {
             // $complaintRegistration = ComplaintRegistration::get();
-            $complaintRegistration = ComplaintRegistration::orderBy('created_at', 'DESC')->get();
+            $complaintRegistration = ComplaintRegistration::orderBy('id','DESC')->get();
             // dd($complaintRegistration);
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
