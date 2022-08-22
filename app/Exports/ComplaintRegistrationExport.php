@@ -31,7 +31,7 @@ class ComplaintRegistrationExport implements FromCollection
             'ADDRESS',
             'PIN CODE',
             'ISSUE',
-            'purchaseInvoice'
+            'PURCHASE INVOICE'
         ];
     }
 
@@ -73,6 +73,7 @@ class ComplaintRegistrationExport implements FromCollection
 
 
         foreach ($export_data as $data) {
+
             $data_array[] = array(
                 'created_at' => $data->created_at,
                 'priority' => $data->priority,
