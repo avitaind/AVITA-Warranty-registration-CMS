@@ -20,8 +20,8 @@
 
     <p><strong>Purchase Date :</strong> {{ $complaintRegistration->purchaseDate }}</p>
 
-    <p>To track your query status please visit our official site <a href="https://avita-india.com/"
-            target="_blank">www.avita-india.com</a> and connect on our chatbot.</p>
+    {{-- <p>To track your query status please visit our official site <a href="https://avita-india.com/"
+            target="_blank">www.avita-india.com</a> and connect on our chatbot.</p> --}}
 
     <p>Thank you for your patronage!</p>
 
