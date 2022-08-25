@@ -73,7 +73,7 @@ class AdminController extends Controller
     {
         try {
             // $complaintRegistration = ComplaintRegistration::get();
-            $complaintRegistration = ComplaintRegistration::orderBy('id','DESC')->get();
+            $complaintRegistration = ComplaintRegistration::orderBy('id', 'DESC')->get();
             // dd($complaintRegistration);
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
@@ -89,7 +89,6 @@ class AdminController extends Controller
         $complaintRegistration = ComplaintRegistration::where('ticketID', $request->ticketid)->first();
         // dd($complaintRegistration);
         return Response::json($complaintRegistration);
-
     }
 
     // Customers Complaint Registration Detail
@@ -155,6 +154,7 @@ class AdminController extends Controller
     //     return view('admin.detailsComplaintRegistration');
     // }
 
+
     // Customers White Lissted Complaint Registration
 
     public function whiteLisstedcomplaintRegistration(Request $request)
@@ -179,6 +179,26 @@ class AdminController extends Controller
             return back()->withError($exception->getMessage())->withInput();
         }
         return redirect()->back()->with("error", "Something is wrong !");
+    }
+
+    // Complaint Registration Fillter
+
+    public function datefilter(Request $request)
+    {
+        try {
+            // dd($request->all());
+            if (request()->start_date || request()->end_date) {
+                $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
+                $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
+                $data = \App\Models\ComplaintRegistration::whereBetween('created_at', [$start_date, $end_date])->get();
+                dd($data);
+            } else {
+                $data = \App\Models\ComplaintRegistration::latest()->get();
+            }
+        } catch (ModelNotFoundException $exception) {
+            return back()->withError($exception->getMessage())->withInput();
+        }
+        return view('admin.whiteLissted', ['data' => $data]);
     }
 
     // Product Type Register

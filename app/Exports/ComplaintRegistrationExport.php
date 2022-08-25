@@ -43,7 +43,6 @@ class ComplaintRegistrationExport implements FromCollection
         // return DB::table('users')->where('is_admin', 0)->get();
         $url = 'https://support.avita-india.com/';
 
-
         $export_data =  ComplaintRegistration::select("created_at", "priority", "ticketID", "ticketOld", "status", "name", "email", "phone", "productSerialNo", "productPartNo", "purchaseDate", "warrantyCheck", "chanalPurchase", "city", "state", "address", "pinCode", "issue", "purchaseInvoice")->get();
 
         $data_array[] = array(
@@ -70,7 +69,6 @@ class ComplaintRegistrationExport implements FromCollection
 
         // dd($export_data);
         // $exportnewdata = [];
-
 
         foreach ($export_data as $data) {
 

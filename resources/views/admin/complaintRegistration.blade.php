@@ -22,16 +22,26 @@
                     </p>
                 </div>
                 <div>
-                    <a href="{{ route('exportAllComplaintRegistration') }}" class="btn btn-primary"> Export File</a>
+                    <form action="{{ route('datefilter') }}" method="GET">
+                        {{-- {{ csrf_field() }} --}}
+                        <div class="input-group mb-3">
+                            <input type="date" class="form-control" name="start_date">
+                            <input type="date" id="dateID" class="form-control" name="end_date">
+                            <button class="btn btn-primary" type="submit">GET</button>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                            <a href="{{ route('exportAllComplaintRegistration') }}" class="btn btn-primary">Export File</a>
+                        </div>
+                    </form>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-12">
                     <div class="card card-default">
                         <div class="card-body">
                             @include('component.alert')
                             <div class="table-responsive">
-                                <table id="responsive-data-table" class="table" style="width:100%">
+                                <table id="responsive-data-table" class="table nowrap" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Date</th>
@@ -70,9 +80,8 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:0" data-bs-toggle="modal"
-
-                                                        class="view-detail" onClick="popupfunctioncall('{{$cr->ticketID}}');">{{ $cr->ticketID }}</i>
+                                                    <a href="javascript:0" data-bs-toggle="modal" class="view-detail"
+                                                        onClick="popupfunctioncall('{{ $cr->ticketID }}');">{{ $cr->ticketID }}</i>
                                                     </a>
                                                     {{-- <a data-bs-target="#modal-contact" class="view-detail"
                                                         data-bs-toggle="modal"
@@ -119,11 +128,17 @@
                                                 <td>{{ $cr->purchaseDate }}</td>
                                                 <td>{{ $cr->warrantyCheck }}</td>
                                                 <td>{{ $cr->chanalPurchase }}</td>
-                                                <td><textarea class="" style="border: none;" name="" id="" cols="40" rows="2">{{ $cr->address }}</textarea></td>
+                                                <td>
+                                                    {{-- <textarea class="" style="border: none;" name="" id="" cols="40" rows="2">{{ $cr->address }}</textarea> --}}
+                                                    {{ $cr->address }}
+                                                </td>
                                                 <td>{{ $cr->city }}</td>
                                                 <td>{{ $cr->state }}</td>
                                                 <td>{{ $cr->pinCode }}</td>
-                                                <td><textarea class="" style="border: none;" name="" id="" cols="40" rows="2">{{ $cr->issue }}</textarea></td>
+                                                <td>
+                                                    {{-- <textarea class="" style="border: none;" name="" id="" cols="40" rows="2">{{ $cr->issue }}</textarea> --}}
+                                                    {{ $cr->issue }}
+                                                </td>
                                                 <td class="">
                                                     @if ($cr->purchaseInvoice != null)
                                                         {{-- @foreach (explode(',', $cr->purchaseinvoice) as $ref) --}}
@@ -179,8 +194,7 @@
                             <div class="contact-info px-4"><br />
                                 <p class="text-dark font-weight-medium pt-3 mb-2">Serial Number</p>
                                 <p id="productSerialNo"></p>
-                                <form class="row g-3" method="POST"
-                                    action="{{ route('complaintRegistration.update')}}">
+                                <form class="row g-3" method="POST" action="{{ route('complaintRegistration.update') }}">
                                     {!! csrf_field() !!}
                                     <div class="row">
 
@@ -283,5 +297,19 @@
             });
             // alert("ticketid = " + ticketid);
         }
+    </script>
+    <script>
+        //Display Only Date till today //
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1; // getMonth() is zero-based
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+        $('#dateID').attr('max', maxDate);
     </script>
 @endsection

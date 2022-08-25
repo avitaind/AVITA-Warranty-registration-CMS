@@ -101,6 +101,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth', 'PreventB
     Route::get('complaintRegistration/detail/{id}', [AdminController::class, 'complaintDetail'])->name('complaintUpdated.details');
     Route::post('complaintRegistration/detail/{id}', [AdminController::class, 'complaintUpdated'])->name('complaintUpdated.update');
 
+    Route::get('datefilter', [AdminController::class, 'datefilter'])->name('datefilter');
 
     Route::get('complaintRegistrationpopUp', [AdminController::class, 'popUpComplaintRegistration']);
 

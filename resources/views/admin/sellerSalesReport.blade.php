@@ -191,7 +191,7 @@
                         <div class="card-body">
                             @include('component.alert')
                             <div class="table-responsive">
-                                <table id="responsive-data-table" class="table" style="width:100%">
+                                <table id="responsive-data-table" class="table nowrap" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>User Name</th>
