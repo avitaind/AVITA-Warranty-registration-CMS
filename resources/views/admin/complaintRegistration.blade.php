@@ -25,9 +25,9 @@
                     <form action="{{ route('datefilter') }}" method="GET">
                         {{-- {{ csrf_field() }} --}}
                         <div class="input-group mb-3">
-                            <input type="date" class="form-control" name="start_date">
-                            <input type="date" id="dateID" class="form-control" name="end_date">
-                            <button class="btn btn-primary" type="submit">GET</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            {{-- <input type="date" class="form-control" name="start_date"> --}}
+                            {{-- <input type="date" id="dateID" class="form-control" name="end_date"> --}}
+                            {{-- <button class="btn btn-primary" type="submit">GET</button>&nbsp;&nbsp;&nbsp;&nbsp; --}}
 
                             <a href="{{ route('exportAllComplaintRegistration') }}" class="btn btn-primary">Export File</a>
                         </div>
