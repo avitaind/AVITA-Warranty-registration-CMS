@@ -21,12 +21,26 @@
                         <span><i class="mdi mdi-chevron-right"></i></span>Complaint Registration
                     </p>
                 </div>
-                <div>
+                <div class=" float-right">
                     <form action="{{ route('datefilter') }}" method="GET">
                         {{-- {{ csrf_field() }} --}}
                         <div class="input-group mb-3">
-                            {{-- <input type="date" class="form-control" name="start_date"> --}}
-                            {{-- <input type="date" id="dateID" class="form-control" name="end_date"> --}}
+                            {{-- <input type="date" class="form-control @error('start_date') is-invalid @enderror"
+                                name="start_date"> --}}
+                            @error('start_date')
+                                <span class="alert alert-danger" id="start_dateHelp" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            {{-- <input type="date" id="dateID"
+                                class="form-control @error('end_date') is-invalid @enderror" name="end_date"> --}}
+                            @error('end_date')
+                                <span class="alert alert-danger" id="end_dateHelp" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            &nbsp;&nbsp;&nbsp;&nbsp;
                             {{-- <button class="btn btn-primary" type="submit">GET</button>&nbsp;&nbsp;&nbsp;&nbsp; --}}
 
                             <a href="{{ route('exportAllComplaintRegistration') }}" class="btn btn-primary">Export File</a>

@@ -49,7 +49,6 @@ class ProductController extends Controller
         return view('admin.product.create', ['product_type' => $product_type]);
     }
 
-
     public function createproductTypes()
     {
         return view('admin.product.addProductType');

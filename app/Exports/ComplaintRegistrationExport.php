@@ -35,9 +35,7 @@ class ComplaintRegistrationExport implements FromCollection
         ];
     }
 
-    /**
-     * @return \Illuminate\Support\Collection
-     */
+    // All Complaint Registration Data
     public function collection()
     {
         // return DB::table('users')->where('is_admin', 0)->get();

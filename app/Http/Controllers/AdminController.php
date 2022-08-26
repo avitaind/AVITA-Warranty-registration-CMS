@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ComplaintRegistrationExport;
+use App\Exports\DateFilterComplaintRegistrationExport;
 use App\Exports\ExportWarrantyExtend;
 use App\Exports\ExportWarrantyRegister;
 use App\Exports\UsersExport;
@@ -174,31 +175,29 @@ class AdminController extends Controller
     public function exportAllComplaintRegistration()
     {
         try {
-            return Excel::download(new ComplaintRegistrationExport, 'All-Complaint-Registration-Collection.xlsx');
+            return Excel::download(new ComplaintRegistrationExport, 'All-Complaint-Registration.xlsx');
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
         return redirect()->back()->with("error", "Something is wrong !");
     }
 
-    // Complaint Registration Fillter
+    // Complaint Registration Filter
 
     public function datefilter(Request $request)
     {
         try {
-            // dd($request->all());
-            if (request()->start_date || request()->end_date) {
-                $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
-                $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
-                $data = \App\Models\ComplaintRegistration::whereBetween('created_at', [$start_date, $end_date])->get();
-                dd($data);
-            } else {
-                $data = \App\Models\ComplaintRegistration::latest()->get();
-            }
+            $this->validate($request, [
+                'start_date'                  => 'required',
+                'end_date'                    => 'required',
+            ]);
+
+            return Excel::download(new DateFilterComplaintRegistrationExport, 'All-Complaint-Registration.xlsx');
         } catch (ModelNotFoundException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
-        return view('admin.whiteLissted', ['data' => $data]);
+        // return view('admin.whiteLissted', ['data' => $data]);
+        return redirect()->back()->with("error", "Something is wrong !");
     }
 
     // Product Type Register
