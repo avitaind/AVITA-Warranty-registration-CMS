@@ -463,7 +463,7 @@ class UserController extends Controller
         try {
             $checkdata = \App\Models\ComplaintRegistration::where('email', Auth::user()->email)->latest()->first();
 
-            $solved = ComplaintRegistration::where('email', Auth::user()->email)->where('status', 'Solved')->count();
+            $solved = ComplaintRegistration::where('email', Auth::user()->email)->where('status', 'Resolved')->count();
             $data = ComplaintRegistration::where('email', Auth::user()->email)->count();
             // dd($data);
 

@@ -117,8 +117,8 @@
                                                         <span class="badge badge-warning">Pending For Review</span>
                                                     @elseif($cr->status == 'Approved')
                                                         <span class="badge badge-primary">Approved</span>
-                                                    @elseif ($cr->status == 'Solved')
-                                                        <span class="badge badge-success">Solved</span>
+                                                    @elseif ($cr->status == 'Resolved')
+                                                        <span class="badge badge-success">Resolved</span>
                                                     @elseif ($cr->status == 'Denied')
                                                         <span class="badge badge-danger">Denied</span>
                                                     @elseif ($cr->status == 'In Process')
@@ -223,9 +223,9 @@
                                                     id="status" aria-describedby="statusHelp" name="status">
                                                     <option value="">------</option>
                                                     <option value="Approved">Approved</option>
-                                                    <option value="In Process">In Process</option>
+                                                    {{-- <option value="In Process">In Process</option> --}}
                                                     <option value="Denied">Denied</option>
-                                                    <option value="Solved">Solved</option>
+                                                    {{-- <option value="Solved">Solved</option> --}}
                                                 </select>
                                                 @error('status')
                                                     <span class="invalid-feedback form-text" id="statusHelp" role="alert">
@@ -312,6 +312,7 @@
             // alert("ticketid = " + ticketid);
         }
     </script>
+
     <script>
         //Display Only Date till today //
         var dtToday = new Date();

@@ -19,8 +19,8 @@ class AppMailer
 {
 
     public $mailer;
-    // public $fromAddress = 'bhavdeep.bharadwaj@ashplan.media';
-    public $fromAddress = 'noreply@avita-india.com';
+    public $fromAddress = 'bhavdeep.bharadwaj@ashplan.media';
+    // public $fromAddress = 'noreply@avita-india.com';
     public $fromName = 'AVITA India | Complaint Registration ';
     public $to;
     public $subject;
@@ -71,7 +71,7 @@ class AppMailer
     public function sendcomplaintRegistrationInformationSolved(ComplaintRegistration $complaintRegistration)
     {
         $this->to =  $complaintRegistration->email;
-        $this->subject = "NOVITA | Complaint | Registration | Solved";
+        $this->subject = "AVITA | Complaint | Registration | Resolved";
         $this->view = 'emails.complaintRegistrationSolved';
         $this->data = compact('complaintRegistration');
         return $this->deliver();
@@ -82,7 +82,7 @@ class AppMailer
     public function sendcomplaintRegistrationInformationDenied(ComplaintRegistration $complaintRegistration)
     {
         $this->to =  $complaintRegistration->email;
-        $this->subject = "NOVITA | Complaint | Registration | Rejected";
+        $this->subject = "AVITA | Complaint | Registration | Rejected";
         $this->view = 'emails.complaintRegistrationDenied';
         $this->data = compact('complaintRegistration');
         return $this->deliver();
@@ -94,7 +94,7 @@ class AppMailer
     {
         // $this->to = ['bhavdeepbhardwaj555@gmail.com'];
         $this->to = $mail;
-        $this->subject = "NOVITA | Product | Warranty | Certificate";
+        $this->subject = "AVITA | Product | Warranty | Certificate";
         $this->view = 'emails.certificate';
         $this->data = compact('user', 'certificate');
         return $this->deliver();

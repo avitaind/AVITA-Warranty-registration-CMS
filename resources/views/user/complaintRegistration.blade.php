@@ -30,7 +30,7 @@
                                         <div class="card-body">
 
                                             <h2 class="mb-1">{{ $solved }}</h2>
-                                            <p>Solved Complaint</p>
+                                            <p>Resolved Complaint</p>
                                             <span class="mdi mdi-account-card-details"></span>
                                         </div>
                                     </div>
